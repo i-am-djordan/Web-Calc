@@ -16,8 +16,29 @@ const equals = document.getElementById('equ');
 const clear = document.getElementById('AC');
 const decimal = document.getElementById('dec');
 const display = document.getElementById('display')
+const dateTimeDisplay = document.getElementById('dateTime');
 
-const dateTime = document.getElementById('dateTime').innerHTML = new Date().toLocaleString();
+function updateDateTime() {
+    let now = new Date();
+    
+    let options = {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+    };
+
+    let formatted = now.toLocaleString('en-US', options);
+    dateTimeDisplay.innerHTML = formatted;
+
+    setTimeout(updateDateTime, 1000);
+}
+
+updateDateTime();
 
 nine.addEventListener('click', () => display.innerHTML += '9');
 eight.addEventListener('click', () => display. innerHTML += '8');
